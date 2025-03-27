@@ -11,7 +11,7 @@ const Footer = () => {
 
             </div>
             <div className='flex'>
-                Created by  <a href="https://github.com/jaymistry1511" target='_blank'>  @Jay Mistry</a>
+                Created by <span><a href="https://github.com/jaymistry1511" target='_blank'>@Jay Mistry</a></span>
             </div>
         </div>
     )
