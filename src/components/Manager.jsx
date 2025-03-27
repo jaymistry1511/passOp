@@ -67,7 +67,7 @@ const Manager = () => {
 
     const deletePassword = (id) => {
         console.log("Deleting password with id ", id)
-        let c = confirm("Do you reallu want to delete this Password ?")
+        let c = confirm("Do you really want to delete this Password ?")
         if(c){  
 
             setPasswordArray(passwordArray.filter(item=>item.id!==id))
@@ -93,6 +93,12 @@ const Manager = () => {
 
         
     }
+
+    const togglePasswordVisibility = (id) => {
+        setPasswordArray(passwordArray.map(item => 
+            item.id === id ? { ...item, showPassword: !item.showPassword } : item
+        ));
+    };
 
     const handleChange = (e) => {
         setform({ ...form, [e.target.name]: e.target.value })
@@ -194,12 +200,21 @@ const Manager = () => {
 
                                     <td className='py-2 border border-white'>
                                         <div className='flex text-center justify-center'>
-                                            <span>{item.password}</span>
+                                            <div>
+                                                <span>{item.showPassword ? item.password : '******'}</span>
+                                            </div>
                                             <div className='lordiconcopy size-7 cursor-pointer' onClick={() => { copyText(item.password) }}>
                                                 <lord-icon
                                                     style={{ "width": "25px", "height": "25px", "paddingTop": "3px", "paddingLeft": "3px" }}
                                                     src="https://cdn.lordicon.com/uecgmesg.json"
                                                     trigger="hover">
+                                                </lord-icon>
+                                            </div>
+                                            <div className='cursor-pointer mx-1' onClick={() => togglePasswordVisibility(item.id)}>
+                                                <lord-icon
+                                                    src={item.showPassword ? "https://cdn.lordicon.com/hjeefwhm.json" : "https://cdn.lordicon.com/tyounuzx.json"}
+                                                    trigger="hover"
+                                                    style={{ "width": "25px", "height": "25px" }}>
                                                 </lord-icon>
                                             </div>
                                         </div>
